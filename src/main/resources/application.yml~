@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: sample-app
+liquibase:
+  enabled: false
+---
+spring:
+  profiles: cloud
+liquibase:
+  change-log: classpath:/db/changelog/db.changelog-master.xml

@@ -1,0 +1,3 @@
+/target/
+/src/main/approuter/node_modules/
+*.log

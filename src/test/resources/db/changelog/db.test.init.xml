@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+	<changeSet author="yashu" id="test3">
+		<createTable tableName="test_scope">
+			<column name="uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="is_in_scope" type="BOOL">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<insert tableName="test_scope">
+			<column name="uuid">4f7005de54e211e7b114b2f933d5fe66</column>
+			<column name="is_in_scope">true</column>
+		</insert>
+		<rollback>
+			<delete tableName="test_scope" />
+		</rollback>
+	</changeSet>
+</databaseChangeLog>    
