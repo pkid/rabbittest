@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet author="yashu" id="create_tenantadministration_role">
+		<sql>
+			CREATE ROLE tenantadministration LOGIN
+			ENCRYPTED PASSWORD
+			'md55db58b336afc5ce89f4f6903ee7f720c'
+			NOSUPERUSER INHERIT NOCREATEDB
+			NOCREATEROLE NOREPLICATION;
+			GRANT tenant_access TO
+			tenantadministration;
+		</sql>
+	</changeSet>
+	<changeSet author="yashu" id="create_schema_tenant_administration">
+		<sql>
+			CREATE SCHEMA tenant_administration;
+			GRANT ALL ON SCHEMA
+			tenant_administration TO tenant_access;
+		</sql>
+	</changeSet>
+	<changeSet author="yashu" id="create_sequence">
+		<createSequence sequenceName="hibernate_sequence"
+			schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="yashu"
+		id="create_table_pypro_tenant_provisioning_status">
+		<createTable tableName="pypro_tenant_provisioning_status"
+			schemaName="tenant_administration">
+			<column name="row_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="version" type="VARCHAR(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_provisioning_status_code" type="VARCHAR(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="snapshot_timestamp" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+				<constraints nullable="false" />
+			</column>
+			<column name="is_draft" type="BOOL" />
+			<column name="uuid" type="UUID" />
+		</createTable>
+		<sql>
+			GRANT ALL ON TABLE
+			tenant_administration.pypro_tenant_provisioning_status
+			TO
+			tenantadministration;
+		</sql>
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-3">
+		<createTable tableName="pypro_tenant_provisioning_status_event"
+			schemaName="tenant_administration">
+			<column name="row_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="bulk_event_id" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="entity_uuid" type="UUID" />
+			<column name="event_uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="payload" type="VARCHAR(5000)">
+				<constraints nullable="false" />
+			</column>
+			<column name="status" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="timestamp" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+				<constraints nullable="false" />
+			</column>
+			<column name="type" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="correlation_uuid" type="UUID" />
+			<column name="is_draft" type="BOOL" />
+			<column name="received_timestamp" type="TIMESTAMP WITH TIME ZONE" />
+			<column name="last_modified_timestamp" type="TIMESTAMP(29) WITHOUT TIME ZONE" />
+			<column name="last_modified_user_uuid" type="UUID" />
+			<column name="process_mode_code" type="VARCHAR(10)" />
+			<column name="related_draft_event_uuid" type="UUID" />
+		</createTable>
+		<sql>
+			GRANT ALL ON TABLE
+			tenant_administration.pypro_tenant_provisioning_status_event TO
+			tenantadministration;
+		</sql>
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-4">
+		<createTable tableName="tenad_tenant_registry" schemaName="tenant_administration">
+			<column name="row_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="snapshot_timestamp" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+				<constraints nullable="false" />
+			</column>
+			<column name="is_draft" type="BOOL" />
+			<column name="tenant_id" type="VARCHAR(36)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_description" type="VARCHAR(400)" />
+			<column name="tenant_category_code" type="VARCHAR(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_status_code" type="VARCHAR(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="customer_uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="database_id" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="database_schema_name" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<sql>
+			GRANT ALL ON TABLE tenant_administration.tenad_tenant_registry TO
+			tenantadministration;
+		</sql>
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-5">
+		<createTable tableName="tenad_tenant_registry_event"
+			schemaName="tenant_administration">
+			<column name="row_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="bulk_event_id" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="entity_uuid" type="UUID" />
+			<column name="event_uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="payload" type="VARCHAR(5000)">
+				<constraints nullable="false" />
+			</column>
+			<column name="status" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="timestamp" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+				<constraints nullable="false" />
+			</column>
+			<column name="type" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="correlation_uuid" type="UUID" />
+			<column name="is_draft" type="BOOL" />
+			<column name="received_timestamp" type="TIMESTAMP WITH TIME ZONE" />
+			<column name="last_modified_timestamp" type="TIMESTAMP(29) WITHOUT TIME ZONE" />
+			<column name="last_modified_user_uuid" type="UUID" />
+			<column name="process_mode_code" type="VARCHAR(10)" />
+			<column name="related_draft_event_uuid" type="UUID" />
+		</createTable>
+		<sql>
+			GRANT ALL ON TABLE
+			tenant_administration.tenad_tenant_registry_event TO
+			tenantadministration;
+		</sql>
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-6">
+		<createTable tableName="tenad_tenant_registry_event_error"
+			schemaName="tenant_administration">
+			<column name="row_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="event_uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="message_code" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="message_parameter" type="VARCHAR(500)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<sql>
+			GRANT ALL ON TABLE
+			tenant_administration.tenad_tenant_registry_event_error
+			TO
+			tenantadministration;
+		</sql>
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-7">
+		<createTable tableName="unpublished_message" schemaName="tenant_administration">
+			<column name="row_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="uuid" type="UUID">
+				<constraints nullable="false" />
+			</column>
+			<column name="event_class_name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="routing_key" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="message_id" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="error" type="VARCHAR(2000)" />
+			<column name="retry_counter" type="SMALLINT" />
+			<column name="message" type="VARCHAR(8000)" />
+			<column name="status" type="VARCHAR(40)" />
+		</createTable>
+		<sql>
+			GRANT ALL ON TABLE tenant_administration.unpublished_message TO
+			tenant_access;
+		</sql>
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-8">
+		<addPrimaryKey columnNames="row_id"
+			constraintName="pypro_tenant_provisioning_status_event_pkey"
+			tableName="pypro_tenant_provisioning_status_event" schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-9">
+		<addPrimaryKey columnNames="row_id"
+			constraintName="pypro_tenant_provisioning_status_pkey" tableName="pypro_tenant_provisioning_status"
+			schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-10">
+		<addPrimaryKey columnNames="row_id"
+			constraintName="tenad_tenant_registry_event_error_pkey" tableName="tenad_tenant_registry_event_error"
+			schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-11">
+		<addPrimaryKey columnNames="row_id"
+			constraintName="tenad_tenant_registry_event_pkey" tableName="tenad_tenant_registry_event"
+			schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-12">
+		<addPrimaryKey columnNames="row_id" constraintName="tenad_tenant_registry_pkey"
+			tableName="tenad_tenant_registry" schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-13">
+		<addPrimaryKey columnNames="row_id" constraintName="unpublished_message_pkey"
+			tableName="unpublished_message" schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-14">
+		<addUniqueConstraint columnNames="tenant_id, snapshot_timestamp"
+			constraintName="tenad_tenant_registry_tenant_id_key" tableName="tenad_tenant_registry"
+			schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-15">
+		<addUniqueConstraint columnNames="uuid, snapshot_timestamp"
+			constraintName="tenad_tenant_registry_tenant_uuid_key" tableName="tenad_tenant_registry"
+			schemaName="tenant_administration" />
+	</changeSet>
+	<changeSet author="vagrant (generated)" id="1498812156594-16">
+		<addUniqueConstraint columnNames="uuid"
+			constraintName="unpublished_message_uuid_key" tableName="unpublished_message"
+			schemaName="tenant_administration" />
+	</changeSet>
+</databaseChangeLog>
