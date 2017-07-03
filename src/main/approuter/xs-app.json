@@ -1,9 +1,0 @@
-{
-  "welcomeFile": "index.html",
-  "routes": [{
-    "source": "^/sample",
-    "target": "/",
-    "destination": "sample-app-destination",
-    "authenticationType": "xsuaa"
-  }]
-}

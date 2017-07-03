@@ -10,10 +10,10 @@
 
 
 	<groupId>com.sap.ngp.infra</groupId>
-	<artifactId>init-db-liquibase</artifactId>
+	<artifactId>init-ngp</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>init-db-liquibase</name>
+	<name>init-ngp</name>
 
 	<dependencies>
 		<dependency>

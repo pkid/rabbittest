@@ -2,14 +2,18 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-	
-	<include file="tenant-access-group-role-changelog-1.xml" relativeToChangelogFile="true"
-		context="master or test" />
-	
-	<include file="tenant-admin-changelog-1.xml" relativeToChangelogFile="true"
-        context="master or test" />
-        
-    <include file="payroll-datasource-changelog-1.xml" relativeToChangelogFile="true"
-        context="master or test" />
-	
+
+	<include file="tenant-access-group-role-changelog-1.xml"
+		relativeToChangelogFile="true" context="master or test" />
+
+	<include file="tenant-admin-changelog-1.xml"
+		relativeToChangelogFile="true" context="master or test" />
+
+	<include file="payroll-datasource-changelog-1.xml"
+		relativeToChangelogFile="true" context="master or test" />
+
+	<include file="payorll-processing-changelog-1.xml"
+		relativeToChangelogFile="true" context="master or test" />
+
+
 </databaseChangeLog>

@@ -5,7 +5,8 @@
 	<changeSet author="yashu" id="create_schema_payroll_datasource">
 		<sql>
 			CREATE SCHEMA payroll_datasource;
-			GRANT ALL ON SCHEMA payroll_datasource TO tenant_access;
+			GRANT ALL ON SCHEMA
+			payroll_datasource TO tenant_access;
 		</sql>
 	</changeSet>
 
@@ -21,6 +22,13 @@
 	</changeSet>
 	<changeSet author="vagrant (generated)" id="1499061602419-2">
 		<addPrimaryKey columnNames="id" constraintName="datasources_pkey"
-			tableName="datasources" schemaName="payroll_datasource"/>
+			tableName="datasources" schemaName="payroll_datasource" />
+	</changeSet>
+	<changeSet id="grant_tenant_access_payroll_datasource"
+		author="yashu">
+		<sql>
+			GRANT ALL ON TABLE payroll_datasource.datasources TO
+			tenant_access;
+		</sql>
 	</changeSet>
 </databaseChangeLog>
