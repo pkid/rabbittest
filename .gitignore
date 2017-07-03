@@ -1,6 +1,6 @@
 /target/
 /src/main/approuter/node_modules/
 *.log
-/settings/
+/.settings/
 .project
 .classpath
