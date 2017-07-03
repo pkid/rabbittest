@@ -1,33 +1,13 @@
 ---
 applications:
-- name: sample-repo-liquibase-app
-  host: sample-repo-liquibase-app
+- name: ngp-init-db
+  host: ngp-init-db
   memory: 1G
-  path: target/sample-repo-service-liquibase-1.0.0-SNAPSHOT.jar
+  path: target/init-db-liquibase-1.0.0-SNAPSHOT.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack.git#v3.13
   env:
       # Use the non-blocking /dev/urandom instead of the default to generate random numbers.
       # This may help with slow startup times, especially when using Spring Boot.
       JAVA_OPTS: -Djava.security.egd=file:///dev/./urandom
-      USER_ROUTE: 'https://bulletinboard-users.cfapps.sap.hana.ondemand.com'
   services:
-  - postgres
-  - uaa
-  - rabbitmq
-  
-  
-- name: approuter-sample-liquibase-repo
-  host: approuter-sample-liquibase-repo
-  path: src/main/approuter
-  buildpack: nodejs_buildpack
-  memory: 512M
-  env:
-    XSAPPNAME: sample-repo-app-d054341
-    destinations: >
-      [{
-         "name":"sample-app-destination",
-         "url" :"https://sample-repo-liquibase-app.cfapps.sap.hana.ondemand.com",
-         "forwardAuthToken": true}
-      ]
-  services:
-    - uaa
+  - postgres3
