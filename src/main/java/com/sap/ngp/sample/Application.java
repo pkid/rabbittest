@@ -30,8 +30,6 @@ public class Application {
         headers.set( "Authorization", authHeader );
 
         String uri = "http://localhost:15672/api/exchanges/%2f/my-new-exchange-new";
-        String uri2 = "http://localhost:15672/api/exchanges";
-
 
         String input = "{\"type\":\"direct\",\"durable\":\"true\"}";
 
